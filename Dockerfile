@@ -21,6 +21,7 @@ RUN cd / \
 && chown -R dev: /Fiji.app
 
 RUN apt-get install -y gnuplot
+RUN apt-get install -y python-matplotlib
 
 #ENV PATH /Fiji.app:$PATH
 ADD fiji.sh /etc/profile.d/fiji.sh
