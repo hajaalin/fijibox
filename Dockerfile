@@ -8,8 +8,7 @@ RUN apt-get install -y openssh-server \
 EXPOSE 22
 
 # install Fiji: have to figure out how to manage new versions...
-RUN apt-get install -y wget \
-&& cd / \
+RUN cd / \
 && wget http://fiji.sc/downloads/Life-Line/fiji-linux64-20140602.tar.gz \
 && tar xf fiji-linux64-20140602.tar.gz \
 && rm fiji-linux64-20140602.tar.gz \
