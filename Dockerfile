@@ -8,13 +8,19 @@ RUN apt-get install -y openssh-server \
 EXPOSE 22
 
 # install Fiji: have to figure out how to manage new versions...
-ENV PATH $PATH:/Fiji.app
 RUN apt-get install -y wget \
 && cd / \
 && wget http://fiji.sc/downloads/Life-Line/fiji-linux64-20140602.tar.gz \
 && tar xf fiji-linux64-20140602.tar.gz \
 && rm fiji-linux64-20140602.tar.gz \
-&& chown -R dev: Fiji.app
+&& Fiji.app/ImageJ-linux64 --update update-force-pristine \
+&& cd Fiji.app/plugins \
+&& wget http://rsb.info.nih.gov/ij/plugins/download/jars/Image_Moments.jar \ 
+&& chown -R dev: /Fiji.app
+
+#ENV PATH /Fiji.app:$PATH
+ADD fiji.sh /etc/profile.d/fiji.sh
+RUN chmod 0555 /etc/profile.d/fiji.sh
 
 CMD ["/usr/sbin/sshd", "-D"] 
 
