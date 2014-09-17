@@ -9,13 +9,18 @@ EXPOSE 22
 
 # install Fiji: have to figure out how to manage new versions...
 RUN cd / \
-&& wget http://fiji.sc/downloads/Life-Line/fiji-linux64-20140602.tar.gz \
-&& tar xf fiji-linux64-20140602.tar.gz \
-&& rm fiji-linux64-20140602.tar.gz \
+&& wget http://jenkins.imagej.net/job/Stable-Fiji/lastSuccessfulBuild/artifact/fiji-linux64.tar.gz \
+&& tar xf fiji-linux64.tar.gz \
+&& rm fiji-linux64.tar.gz \
+#&& wget http://fiji.sc/downloads/Life-Line/fiji-linux64-20140602.tar.gz \
+#&& tar xf fiji-linux64-20140602.tar.gz \
+#&& rm fiji-linux64-20140602.tar.gz \
 && Fiji.app/ImageJ-linux64 --update update-force-pristine \
 && cd Fiji.app/plugins \
 && wget http://rsb.info.nih.gov/ij/plugins/download/jars/Image_Moments.jar \ 
 && chown -R dev: /Fiji.app
+
+RUN apt-get install -y gnuplot
 
 #ENV PATH /Fiji.app:$PATH
 ADD fiji.sh /etc/profile.d/fiji.sh
