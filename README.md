@@ -1,4 +1,4 @@
-fijibox-lifeline
+fijibox
 ================
 
-Docker container with Fiji lifeline version 2014-06-02.
+Docker container with Fiji.
